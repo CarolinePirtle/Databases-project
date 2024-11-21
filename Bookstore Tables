@@ -1,0 +1,73 @@
+CREATE TABLE Author(
+    Author_ID INT PRIMARY KEY,
+    First_Name VARCHAR(50),
+    Last_Name VARCHAR(50),
+    Bio VARCHAR(4000)
+);
+
+CREATE TABLE Publisher (
+    Publisher_ID INT PRIMARY KEY,
+    Publisher_Name VARCHAR(50)
+);
+
+CREATE TABLE Book (
+    ISBN INT PRIMARY KEY,
+    Title VARCHAR(50),
+    Price DECIMAL(3, 2),
+    Genre VARCHAR(50),
+    Publication_Date DATE,
+    FOREIGN KEY (Publisher_ID) REFERENCES Publisher(Publisher_ID)
+);
+
+CREATE TABLE Book_Author (
+    FOREIGN KEY (ISBN) REFERENCES Book(ISBN),
+    FOREIGN KEY (Author_ID) REFERENCES Author(Author_ID)
+);
+
+INSERT INTO Author (Author_ID, First_Name, Last_Name, Bio)
+VALUES (1, 'Suzanne', 'Collins', 'Suzanne Collins is an American author and screenwriter, best know for the immensely popular Hunger Games series of young adult novels.');
+INSERT INTO Author (Author_ID, First_Name, Last_Name, Bio)
+VALUES (2, 'George', 'Orwell', 'George Orwell was an English novelist, essayist, and critic most famous for his novels Animal Farm (1945) and Nineteen Eighty-Four (1949).');
+INSERT INTO Author (Author_ID, First_Name, Last_Name, Bio)
+VALUES (3, 'J.R.R.', 'Tolkien', 'English writer and scholar J.R.R. Tolkien contributed to English literature two of its most richly inventive fantasy epics, The Hobbit (1937) and The Lord of the Rings (1954–55).');
+INSERT INTO Author (Author_ID, First_Name, Last_Name, Bio)
+VALUES (4, 'J.K.', 'Rowling', 'J.K. Rowling is a British author and the creator of the popular and critically acclaimed Harry Potter series, about a young sorcerer in training.');
+INSERT INTO Author (Author_ID, First_Name, Last_Name, Bio) 
+VALUES (5, 'George R.R.', 'Martin', 'George R.R. Martin is an American writer of fantasy, best known for his Song of Ice and Fire series.');
+  
+INSERT INTO Publisher (Publisher_ID, Publisher_Name)
+VALUES (1, 'Bloomsbury');
+INSERT INTO Publisher (Publisher_ID, Publisher_Name)
+VALUES (2, 'Scholastic Press');
+INSERT INTO Publisher (Publisher_ID, Publisher_Name)
+VALUES (3, 'Bantam Spectra');
+INSERT INTO Publisher (Publisher_ID, Publisher_Name)
+VALUES (4, 'Secker & Warburg');
+INSERT INTO Publisher (Publisher_ID, Publisher_Name)
+VALUES (5, 'George Allen & Unwin');
+
+INSERT INTO Book (ISBN, Title, Price, Genre, Publication_Date, Publisher_ID)
+VALUES (9780439023528, 'The Hunger Games', 7.50, 'Dystopian', '09-14-2008', 2);
+INSERT INTO Book (ISBN, Title, Price, Genre, Publication_Date, Publisher_ID)
+VALUES (9780358120353, '1984', 10.50, 'Dystopian', '06-08-1949', 4);
+INSERT INTO Book (ISBN, Title, Price, Genre, Publication_Date, Publisher_ID)
+VALUES (9789354993381, 'Animal Farm', 9.00, 'Political Satire', '08-17-1945', 4);
+INSERT INTO Book (ISBN, Title, Price, Genre, Publication_Date, Publisher_ID)
+VALUES (9780395489314, 'The Fellowship of the Ring', 12.00, 'Fantasy', '07-29-1954', 5);
+INSERT INTO Book (ISBN, Title, Price, Genre, Publication_Date, Publisher_ID)
+VALUES (9780747532743, 'Harry Potter and the Philosopher''s Stone', 15.50, 'Fantasy', '06-26-1997', 1);
+INSERT INTO Book (ISBN, Title, Price, Genre, Publication_Date, Publisher_ID)
+VALUES (9780553386790, 'A Game of Thrones', 11.00, 'Fantasy', '08-01-1996', 3);
+
+INSERT INTO Book_Author (ISBN, Author_ID)
+VALUES (9780439023528, 1);
+INSERT INTO Book_Author (ISBN, Author_ID)
+VALUES (9780358120353, 2);
+INSERT INTO Book_Author (ISBN, Author_ID)
+VALUES (9789354993381, 2);
+INSERT INTO Book_Author (ISBN, Author_ID)
+VALUES (9780395489314, 3);
+INSERT INTO Book_Author (ISBN, Author_ID)
+VALUES (9780747532743, 4);
+INSERT INTO Book_Author (ISBN, Author_ID)
+VALUES (9780553386790, 5);
