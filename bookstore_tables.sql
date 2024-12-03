@@ -1,27 +1,27 @@
 CREATE TABLE Author (
     Author_ID INT PRIMARY KEY,
-    First_Name VARCHAR(50),
-    Last_Name VARCHAR(50),
-    Bio VARCHAR(4000)
+    First_Name VARCHAR(15),
+    Last_Name VARCHAR(15),
+    Bio VARCHAR(200)
 );
 
 CREATE TABLE Publisher (
     Publisher_ID INT PRIMARY KEY,
-    Publisher_Name VARCHAR(50)
+    Publisher_Name VARCHAR(35)
 );
 
 CREATE TABLE Book (
-    ISBN VARCHAR(500) PRIMARY KEY,
-    Title VARCHAR(500),
+    ISBN VARCHAR(13) PRIMARY KEY,
+    Title VARCHAR(50),
     Price DECIMAL(5, 2),
-    Genre VARCHAR(500),
+    Genre VARCHAR(30),
     Publication_Date DATE,
     Publisher_ID INT,
     FOREIGN KEY (Publisher_ID) REFERENCES Publisher(Publisher_ID)
 );
 
 CREATE TABLE Book_Author (
-    ISBN VARCHAR(500),
+    ISBN VARCHAR(13),
     Author_ID INT,
     PRIMARY KEY (ISBN, Author_ID),
     FOREIGN KEY (ISBN) REFERENCES Book(ISBN),
@@ -30,10 +30,10 @@ CREATE TABLE Book_Author (
 
 CREATE TABLE Customer (
     Customer_ID INT PRIMARY KEY,
-    First_Name VARCHAR(50),
-    Last_Name VARCHAR(50),
-    Contact_Info VARCHAR(100),
-    Payment_Method VARCHAR (100)
+    First_Name VARCHAR(15),
+    Last_Name VARCHAR(15),
+    Contact_Info VARCHAR(50),
+    Payment_Method VARCHAR (30)
 );
 
 CREATE TABLE Customer_Orders (
@@ -46,7 +46,7 @@ CREATE TABLE Customer_Orders (
 );
 
 CREATE TABLE Cart (
-    ISBN VARCHAR(500),
+    ISBN VARCHAR(13),
     Order_ID INT,
     PRIMARY KEY (ISBN, Order_ID),
     FOREIGN KEY (ISBN) REFERENCES Book(ISBN),
@@ -205,11 +205,10 @@ VALUES ('9780553386790', 7);
 INSERT INTO Cart (ISBN, Order_ID)
 VALUES ('9780395489314', 7);
 
-
-DROP TABLE Author CASCADE CONSTRAINTS;
+/*DROP TABLE Author CASCADE CONSTRAINTS;
 DROP TABLE Publisher CASCADE CONSTRAINTS;
 DROP TABLE Book CASCADE CONSTRAINTS;
 DROP TABLE Book_Author CASCADE CONSTRAINTS;
 DROP TABLE Customer CASCADE CONSTRAINTS;
 DROP TABLE Customer_Orders CASCADE CONSTRAINTS;
-DROP TABLE Cart CASCADE CONSTRAINTS;
+DROP TABLE Cart CASCADE CONSTRAINTS;*/
